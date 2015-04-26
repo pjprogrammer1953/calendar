@@ -31,13 +31,13 @@ puts days_of_week_header
 
 #def number_of_days
     ccyy = $year.to_s
-		yy = (ccyy[2] + ccyy[3]).to_i
+		$yy = (ccyy[2] + ccyy[3]).to_i
 	if $month == 9 || $month == 4 || $month == 6 || $month == 11
 	  $days = 30
 	elsif $month == 2
 		$days = 28
       if $year.modulo(4) == 0
-      	if $year.modulo(400) == 0 || yy != 0
+      	if $year.modulo(400) == 0 || $yy != 0
       	$days = 29
         end
       end
@@ -51,24 +51,36 @@ puts days_of_week_header
 #def start_day
     $weeks = [[],[],[],[],[],[]]
 
-#puts weeks.inspect
-
 # Number of days in this month
     d = $days
-
 
 #start_day (SUN = 0, MON = 1, TUE = 2, WED = 3, THU = 4, FRI = 5, SAT = 6)
 #def zeller_congruence
 
+  if $month == 1 || $month ==2
+    $month +=12
+    $year -= 1
+  end
 
+  k = $year.modulo(100)
+  ccyy = $year.to_s
+  j = (ccyy[0] + ccyy[1]).to_i
 
-  $first_day_this_month = 6 # from zeller method
+  h = (1 + (13 * ($month + 1)/5) + k + (k/4) + (j/4) +(5*j)).modulo(7)
 
+# adjust for day of week value difference from Zeller to Shoup
+  if h >= 1 && h <= 6
+    h -= 1
+  else
+  	h = 6
+  end
 
+  $first_day_this_month = h
 
-
-
-
+#  print "$month ", $month, "\n"
+#  print "k ", k, "\n"
+#  print "j ", j, "\n"
+#  print "h ", h, "\n"
 #end
 
 # Number of the day of the week and of the first day
