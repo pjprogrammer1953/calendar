@@ -50,15 +50,44 @@ puts days_of_week_header
 
 #def start_day
     $weeks = [[],[],[],[],[],[]]
+
 #puts weeks.inspect
+
 # Number of days in this month
     d = $days
+
+
 #start_day (SUN = 0, MON = 1, TUE = 2, WED = 3, THU = 4, FRI = 5, SAT = 6)
-$first_day_this_month = 6 # from zeller method
+#def zeller_congruence
+
+
+
+  $first_day_this_month = 6 # from zeller method
+
+
+
+
+
+
+#end
+
 # Number of the day of the week and of the first day
     f = $first_day_this_month
 # Counter for this day of the month
     y = 1
+    line = ""
+# Fill empty days at beginning of month, if any (Sunday = 0)
+    if $first_day_this_month > 0
+      i = 0
+      filler = "    "
+      while i < $first_day_this_month
+#      	print "PreLoadBlankDays ", "  ","i ", i
+        $weeks[0].push(filler)
+        line += filler
+        i += 1
+      end
+    end
+
 # "w" is the number of the week from 1 thru 6
     6.times do |w|
       while y <= d
@@ -68,6 +97,7 @@ $first_day_this_month = 6 # from zeller method
             filler = y.to_s + "  "
         end
         $weeks[w].push(filler)
+        line += filler
 #       print "Each Day ", w, "  ", $weeks[w[f]].inspect
         y += 1
         f += 1
@@ -76,11 +106,12 @@ $first_day_this_month = 6 # from zeller method
         end
       end
       f = 0  #reset the day of the week
-      print $weeks[w], "\n"
+#      print $weeks[w], "\n"
+      print line, "\n"
+      line = ''
       if y > d
       	break
       end
-#      print "Week after ", w, "  ", $weeks[w].inspect, "\n"
     end
   #end
 end
