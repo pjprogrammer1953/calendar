@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-class Month
+class Year
 
 month_full_alpha = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 days_of_week_header = ["Sun Mon Tue Wed Thu Fri Sat "]
@@ -111,7 +111,8 @@ puts days_of_week_header
           break
         end
       end
-      f = 0  #reset the day of the week
+# reset the day of the week
+      f = 0
 #      print $weeks[w], "\n"
       print line, "\n"
       line = ''
