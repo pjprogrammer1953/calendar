@@ -15,7 +15,7 @@ Format: `ruby cal.rb MM CCYY`"
 class Month
 
 month_full_alpha = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-days_of_week_header = ["Sun Mon Tue Wed Thu Fri Sat "]
+days_of_week_header = ["Su Mo Tu We Th Fr Sa "]
 
 print month_full_alpha[$month-1], " ", $year, "\n"
 puts days_of_week_header
@@ -72,7 +72,7 @@ puts days_of_week_header
 # Fill empty days at beginning of month, if any (Sunday = 0)
     if $first_day_this_month > 0
       i = 0
-      filler = "    "
+      filler = "   "
       while i < $first_day_this_month
 
 # print "PreLoadBlankDays
@@ -86,9 +86,9 @@ puts days_of_week_header
     6.times do |w|
       while y <= d
         if y < 10
-        	filler = y.to_s + "   "
+        	filler = y.to_s + "  "
         else
-          filler = y.to_s + "  "
+          filler = y.to_s + " "
         end
 
         line += filler

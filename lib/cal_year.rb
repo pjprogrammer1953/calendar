@@ -14,7 +14,7 @@ $month_full_alpha = [
   "November ",
   "December "]
 
-$dow_header = "Sun Mon Tue Wed Thu Fri Sat "
+$dow_header = "Su Mo Tu We Th Fr Sa  "
 
 #Test for valid month and year parms
 $year = ARGV[0].to_i
@@ -120,7 +120,7 @@ def print_days (i)
     line0 = ""
     line1 = ""
     line2 = ""
-    filler4 = "    "
+    filler4 = "   "
 
 # Fill empty days at beginning of 1st month, if any (Sunday = 0)
     if f0 > 0
@@ -160,9 +160,9 @@ def print_days (i)
           filler0 = filler4
         else
           if y0 < 10
-        	  filler0 = y0.to_s + "   "
+        	  filler0 = y0.to_s + "  "
           else
-            filler0 = y0.to_s + "  "
+            filler0 = y0.to_s + " "
           end
         end
     # append filler field to line & increment counter
@@ -179,9 +179,9 @@ def print_days (i)
           filler1 = filler4
         else
           if y1 < 10
-            filler1 = y1.to_s + "   "
-          else
             filler1 = y1.to_s + "  "
+          else
+            filler1 = y1.to_s + " "
           end
         end
     # append filler field to line & increment counter
@@ -198,9 +198,9 @@ def print_days (i)
           filler2 = filler4
         else
           if y2 < 10
-            filler2 = y2.to_s + "   "
-          else
             filler2 = y2.to_s + "  "
+          else
+            filler2 = y2.to_s + " "
           end
         end
     # append filler field to line & increment counter
@@ -217,7 +217,7 @@ def print_days (i)
       f1 = 0
       f2 = 0
      #      print week line for 3 months
-      print line0, line1, line2, "\n"
+      print line0, " ",line1, " ",line2, "\n"
       line0 = ''
       line1 = ''
       line2 = ''
@@ -227,8 +227,8 @@ def print_days (i)
 
 4.times do |mm|
     xx = mm * 3
-    print $month_full_alpha[xx], '                   '
-    print $month_full_alpha[xx + 1], '                   '
+    print "      ", $month_full_alpha[xx], "             "
+    print $month_full_alpha[xx + 1], "             "
     print $month_full_alpha[xx + 2], "\n"
     print $dow_header, $dow_header, $dow_header, "\n"
     print_days (xx)
