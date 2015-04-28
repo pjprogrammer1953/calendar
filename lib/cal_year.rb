@@ -18,7 +18,7 @@ $dow_header = "Sun Mon Tue Wed Thu Fri Sat "
 
 class Year
 $year = ARGV[0].to_i
-print $year
+print $year, "\n"
 
 # Fill $start_day array with 12 start days
 #def start_day()
@@ -51,8 +51,8 @@ print $year
 end
 
 # Display Days in month for validation
-    print "\n" "Days in month: "
-    puts $days_in_month.inspect
+#    print "\n" "Days in month: "
+#    puts $days_in_month.inspect
 
 #start_day (SUN = 0, MON = 1, TUE = 2, WED = 3, THU = 4, FRI = 5, SAT = 6)
 #def zeller_congruence - find start day of all 12 months
@@ -86,10 +86,10 @@ end
  end # end of number of days loop
 
 #Display start day of each month for validation
-print "Start day of month: "
-puts $start_day.inspect
+#print "Start day of month: "
+#puts $start_day.inspect
 
-end # End of YEar Class
+end # End of Year Class
 ########################################################
 def print_days (i)
 
@@ -114,28 +114,28 @@ def print_days (i)
 
 # Fill empty days at beginning of 1st month, if any (Sunday = 0)
     if f0 > 0
-      i0 = 0
-      while i0 < f0
+      j0 = 0
+      while j0 < f0
         line0 += filler4
-        i0 += 1
+        j0 += 1
       end
     end
 
     # Fill empty days at beginning of 2nd month, if any (Sunday = 0)
     if f1 > 0
-      i1 = 0
-      while i1 < f1
+      j1 = 0
+      while j1 < f1
         line1 += filler4
-        i1 += 1
+        j1 += 1
       end
     end
 
     # Fill empty days at beginning of 3rd month, if any (Sunday = 0)
     if f2 > 0
-      i2 = 0
-      while i2 < f2
+      j2 = 0
+      while j2 < f2
         line2 += filler4
-        i2 += 1
+        j2 += 1
       end
     end
 
@@ -145,11 +145,15 @@ def print_days (i)
     d2 = $days_in_month[i2]
     6.times do
 ##############
-      while y0 <= d0
-        if y0 < 10
-        	filler0 = y0.to_s + "   "
+      7.times do
+        if y0 > d0
+          filler0 = filler4
         else
-          filler0 = y0.to_s + "  "
+          if y0 < 10
+        	  filler0 = y0.to_s + "   "
+          else
+            filler0 = y0.to_s + "  "
+          end
         end
     # append filler field to line & increment counter
         line0 += filler0
@@ -160,11 +164,15 @@ def print_days (i)
         end
       end
 ##############
-      while y1 <= d1
-        if y1 < 10
-          filler1 = y1.to_s + "   "
+      7.times do
+        if y1 > d1
+          filler1 = filler4
         else
-          filler1 = y1.to_s + "  "
+          if y1 < 10
+            filler1 = y1.to_s + "   "
+          else
+            filler1 = y1.to_s + "  "
+          end
         end
     # append filler field to line & increment counter
         line1 += filler1
@@ -175,11 +183,15 @@ def print_days (i)
         end
       end
 ##############
-      while y2 <= d2
-        if y2 < 10
-          filler2 = y2.to_s + "   "
+      7.times do
+        if y2 > d2
+          filler2 = filler4
         else
-          filler2 = y2.to_s + "  "
+          if y2 < 10
+            filler2 = y2.to_s + "   "
+          else
+            filler2 = y2.to_s + "  "
+          end
         end
     # append filler field to line & increment counter
         line2 += filler2
@@ -199,9 +211,6 @@ def print_days (i)
       line0 = ''
       line1 = ''
       line2 = ''
-#      if y0 > d0
-#      	break
-#      end
     end # end of 6.times do loop printing each week line
 
   end #end of method print_days
