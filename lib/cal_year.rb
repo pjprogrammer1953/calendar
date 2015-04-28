@@ -16,8 +16,18 @@ $month_full_alpha = [
 
 $dow_header = "Sun Mon Tue Wed Thu Fri Sat "
 
-class Year
+#Test for valid month and year parms
 $year = ARGV[0].to_i
+
+  if ($year < 1800 or $year > 3000)
+    puts "Enter the command and year between 1800-3000.
+Format: `ruby cal_year.rb CCYY`"
+    return
+  end
+
+
+class Year
+
 print $year, "\n"
 
 # Fill $start_day array with 12 start days

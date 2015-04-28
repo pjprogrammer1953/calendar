@@ -1,30 +1,27 @@
 #!/usr/bin/env ruby
 
+#run parameters = ARGV
+$month = ARGV[0].to_i
+$year = ARGV[1].to_i
+
+#Test for valid month and year parms
+
+  if ($month < 1 or $month > 12) || ($year < 1800 or $year > 3000)
+    puts "Enter the command and numeric month (no leading zero) and year between 1800-3000.
+Format: `ruby cal.rb MM CCYY`"
+    return
+  end
+
 class Month
 
 month_full_alpha = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 days_of_week_header = ["Sun Mon Tue Wed Thu Fri Sat "]
 
-#run parameters = ARGV
-$month = ARGV[0].to_i
-$year = ARGV[1].to_i
-
-def exit_with_usage_instructions
-  puts <<EOS
-Enter the command and numeric month and year between 1800-3000.
-Format: `./cal.rb MM CCYY`
-EOS
-#  exit
-end
-
 print month_full_alpha[$month-1], " ", $year, "\n"
 puts days_of_week_header
 
-#exit_with_usage_instructions
-
 #number_of_days
 
-#def number_of_days
     ccyy = $year.to_s
 		$yy = (ccyy[2] + ccyy[3]).to_i
 	if $month == 9 || $month == 4 || $month == 6 || $month == 11
@@ -38,9 +35,7 @@ puts days_of_week_header
       end
     else $days = 31
     end
-#end
 
-#def start_day
 
 # Number of days in this month
     d = $days
@@ -68,7 +63,6 @@ puts days_of_week_header
 
   $first_day_this_month = h
 
-#end
 
 # Number of the day of the week and of the first day
     f = $first_day_this_month
@@ -80,14 +74,14 @@ puts days_of_week_header
       i = 0
       filler = "    "
       while i < $first_day_this_month
-#      	print "PreLoadBlankDays ", "  ","i ", i
-#        $weeks[0].push(filler)
+
+# print "PreLoadBlankDays
         line += filler
         i += 1
       end
     end
 
-# "w" is the number of the week from 1 thru 6
+# Generate weeks from 1 - 6
 
     6.times do |w|
       while y <= d
@@ -96,17 +90,18 @@ puts days_of_week_header
         else
           filler = y.to_s + "  "
         end
-#        $weeks[w].push(filler)
+
         line += filler
-#       print "Each Day ", w, "  ", $weeks[w[f]].inspect
+
         y += 1
         f += 1
         if f >= 7
           break
         end
       end
-      f = 0  #reset the day of the week
-#      print $weeks[w], "\n"
+# reset the day of the week
+      f = 0
+# print calendar week line
       print line, "\n"
       line = ''
       if y > d
@@ -115,3 +110,4 @@ puts days_of_week_header
     end
 
 end
+#######################################################
