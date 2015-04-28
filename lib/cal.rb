@@ -5,7 +5,7 @@ class Month
 month_full_alpha = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 days_of_week_header = ["Sun Mon Tue Wed Thu Fri Sat "]
 
-#args = ARGV
+#run parameters = ARGV
 $month = ARGV[0].to_i
 $year = ARGV[1].to_i
 
@@ -21,6 +21,7 @@ print month_full_alpha[$month-1], " ", $year, "\n"
 puts days_of_week_header
 
 #exit_with_usage_instructions
+
 #number_of_days
 
 #def number_of_days
@@ -38,12 +39,8 @@ puts days_of_week_header
     else $days = 31
     end
 #end
-#puts "yy", yy, "  ", (yy.modulo(4)), "\n"
-#puts "ccyy", ccyy, "  ", ($year.modulo(4)), "\n"
-#puts "Number of days", $days, "\n"
 
 #def start_day
-#    $weeks = [[],[],[],[],[],[]]
 
 # Number of days in this month
     d = $days
@@ -71,10 +68,6 @@ puts days_of_week_header
 
   $first_day_this_month = h
 
-#  print "$month ", $month, "\n"
-#  print "k ", k, "\n"
-#  print "j ", j, "\n"
-#  print "h ", h, "\n"
 #end
 
 # Number of the day of the week and of the first day
@@ -95,12 +88,13 @@ puts days_of_week_header
     end
 
 # "w" is the number of the week from 1 thru 6
+
     6.times do |w|
       while y <= d
         if y < 10
         	filler = y.to_s + "   "
         else
-            filler = y.to_s + "  "
+          filler = y.to_s + "  "
         end
 #        $weeks[w].push(filler)
         line += filler
@@ -119,5 +113,5 @@ puts days_of_week_header
       	break
       end
     end
-  #end
+
 end
