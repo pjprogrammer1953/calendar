@@ -46,16 +46,16 @@ print $year
   else days = 31
   end
 
-    @@d = days
-    $days_in_month.push(@@d)
+    $days_in_month.push(days)
 
 end
 
-#start_day (SUN = 0, MON = 1, TUE = 2, WED = 3, THU = 4, FRI = 5, SAT = 6)
-#def zeller_congruence - find start day of all 12 months
-
+# Display Days in month for validation
     print "\n" "Days in month: "
     puts $days_in_month.inspect
+
+#start_day (SUN = 0, MON = 1, TUE = 2, WED = 3, THU = 4, FRI = 5, SAT = 6)
+#def zeller_congruence - find start day of all 12 months
 
 12.times do |mm|
 
@@ -85,67 +85,132 @@ end
 
  end # end of number of days loop
 
+#Display start day of each month for validation
 print "Start day of month: "
 puts $start_day.inspect
 
-
-
-end
+end # End of YEar Class
 ########################################################
 def print_days (i)
+
 # Number of the day of the week and of the first day
-     i = 0
-    @ff = $start_day[i]
+     i0 = i
+     f0 = $start_day[i0]
+     i1 = i + 1
+     f1 = $start_day[i1]
+     i2 = i + 2
+     f2 = $start_day[i2]
+
 # Counter for this day of the month
-    y = 1
-    line = ""
-# Fill empty days at beginning of month, if any (Sunday = 0)
-    if @ff > 0
-      i = 0
-      filler = "    "
-      while i < @ff
-#      	print "PreLoadBlankDays ", "  ","i ", i
-#        @@weeks[0].push(filler)
-        line += filler
-        i += 1
+    y0 = 1
+    y1 = 1
+    y2 = 1
+
+# Clear all three line portions
+    line0 = ""
+    line1 = ""
+    line2 = ""
+    filler4 = "    "
+
+# Fill empty days at beginning of 1st month, if any (Sunday = 0)
+    if f0 > 0
+      i0 = 0
+      while i0 < f0
+        line0 += filler4
+        i0 += 1
       end
     end
 
-# "w" is the number of the week from 1 thru 6
-    @dd = $days_in_month[i]
-    6.times do |w|
-      while y <= @dd
-        if y < 10
-        	filler = y.to_s + "   "
+    # Fill empty days at beginning of 2nd month, if any (Sunday = 0)
+    if f1 > 0
+      i1 = 0
+      while i1 < f1
+        line1 += filler4
+        i1 += 1
+      end
+    end
+
+    # Fill empty days at beginning of 3rd month, if any (Sunday = 0)
+    if f2 > 0
+      i2 = 0
+      while i2 < f2
+        line2 += filler4
+        i2 += 1
+      end
+    end
+
+# compose & print weeks 1 - 6
+    d0 = $days_in_month[i0]
+    d1 = $days_in_month[i1]
+    d2 = $days_in_month[i2]
+    6.times do
+##############
+      while y0 <= d0
+        if y0 < 10
+        	filler0 = y0.to_s + "   "
         else
-            filler = y.to_s + "  "
+          filler0 = y0.to_s + "  "
         end
-     #        @@weeks[w].push(filler)
-        line += filler
-     #       print "Each Day ", w, "  ", @@weeks[w[f]].inspect
-        y += 1
-        @ff += 1
-        if @ff >= 7
+    # append filler field to line & increment counter
+        line0 += filler0
+        y0 += 1
+        f0 += 1
+        if f0 >= 7
           break
         end
       end
-     # reset the day of the week
-      @ff = 0
-     #      print @@weeks[w], "\n"
-      print line, "\n"
-      line = ''
-      if y > @dd
-      	break
+##############
+      while y1 <= d1
+        if y1 < 10
+          filler1 = y1.to_s + "   "
+        else
+          filler1 = y1.to_s + "  "
+        end
+    # append filler field to line & increment counter
+        line1 += filler1
+        y1 += 1
+        f1 += 1
+        if f1 >= 7
+          break
+        end
       end
-    end
-  end
+##############
+      while y2 <= d2
+        if y2 < 10
+          filler2 = y2.to_s + "   "
+        else
+          filler2 = y2.to_s + "  "
+        end
+    # append filler field to line & increment counter
+        line2 += filler2
+        y2 += 1
+        f2 += 1
+        if f2 >= 7
+          break
+        end
+      end
+##############
+     # reset the day of the week
+      f0 = 0
+      f1 = 0
+      f2 = 0
+     #      print week line for 3 months
+      print line0, line1, line2, "\n"
+      line0 = ''
+      line1 = ''
+      line2 = ''
+#      if y0 > d0
+#      	break
+#      end
+    end # end of 6.times do loop printing each week line
+
+  end #end of method print_days
 
 4.times do |mm|
     xx = mm * 3
-    puts puts "\n"
     print $month_full_alpha[xx], '                   '
     print $month_full_alpha[xx + 1], '                   '
     print $month_full_alpha[xx + 2], "\n"
     print $dow_header, $dow_header, $dow_header, "\n"
-    print_days (mm)
+    print_days (xx)
   end
