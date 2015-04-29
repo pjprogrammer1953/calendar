@@ -1,4 +1,22 @@
 #!/usr/bin/env ruby
+require_relative 'NumberOfDays'
+
+$month_full_alpha = [
+  "January  ",
+  "February ",
+  "March    ",
+  "April    ",
+  "May      ",
+  "June     ",
+  "July     ",
+  "August   ",
+  "September",
+  "October  ",
+  "November ",
+  "December "]
+
+$dow_header = "Su Mo Tu We Th Fr Sa "
+
 
 #run parameters = ARGV
 $month = ARGV[0].to_i
@@ -14,68 +32,27 @@ Format: `ruby cal.rb MM CCYY`"
 
 class Month
 
-month_full_alpha = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-days_of_week_header = ["Su Mo Tu We Th Fr Sa "]
-
-print month_full_alpha[$month-1], " ", $year, "\n"
-puts days_of_week_header
-
-#number_of_days
-
-    ccyy = $year.to_s
-		$yy = (ccyy[2] + ccyy[3]).to_i
-	if $month == 9 || $month == 4 || $month == 6 || $month == 11
-	  $days = 30
-	elsif $month == 2
-		$days = 28
-      if $year.modulo(4) == 0
-      	if $year.modulo(400) == 0 || $yy != 0
-      	$days = 29
-        end
-      end
-    else $days = 31
-    end
-
+print $month_full_alpha[$month-1], " ", $year, "\n"
+puts $dow_header
 
 # Number of days in this month
-    d = $days
+    d = NumberOfDays.new($month, $year).days
 
 #start_day (SUN = 0, MON = 1, TUE = 2, WED = 3, THU = 4, FRI = 5, SAT = 6)
-#def zeller_congruence
 
-  if $month == 1 || $month ==2
-    $month +=12
-    $year -= 1
-  end
-
-  k = $year.modulo(100)
-  ccyy = $year.to_s
-  j = (ccyy[0] + ccyy[1]).to_i
-
-  h = (1 + (13 * ($month + 1)/5) + k + (k/4) + (j/4) +(5*j)).modulo(7)
-
-# adjust for day of week value difference from Zeller to Shoup
-  if h >= 1 && h <= 6
-    h -= 1
-  else
-  	h = 6
-  end
-
-  $first_day_this_month = h
-
-
+# zeller_congruence
 # Number of the day of the week and of the first day
-    f = $first_day_this_month
+    f = NumberOfDays.new($month, $year).zeller
+
 # Counter for this day of the month
     y = 1
     line = ""
 # Fill empty days at beginning of month, if any (Sunday = 0)
-    if $first_day_this_month > 0
+    if f > 0
       i = 0
       filler = "   "
-      while i < $first_day_this_month
-
-# print "PreLoadBlankDays
+      while i < f
+# PreLoadBlankDays
         line += filler
         i += 1
       end
@@ -83,7 +60,7 @@ puts days_of_week_header
 
 # Generate weeks from 1 - 6
 
-    6.times do |w|
+    6.times do
       while y <= d
         if y < 10
         	filler = y.to_s + "  "

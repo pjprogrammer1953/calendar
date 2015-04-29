@@ -1,3 +1,4 @@
+require_relative 'NumberOfDays'
 #!/usr/bin/env ruby
 
 $month_full_alpha = [
@@ -41,63 +42,14 @@ print $year, "\n"
     month = mm + 1
 
 # Number of days in this month
+    d = NumberOfDays.new(month, $year).days
+    $days_in_month.push(d)
 
-  if month == 9 || month == 4 || month == 6 || month == 11
-    days = 30
-  elsif month == 2
-    ccyy = $year.to_s
-    yy = (ccyy[2] + ccyy[3]).to_i
-    days = 28
-      if $year.modulo(4) == 0
-        if $year.modulo(400) == 0 || yy != 0
-        days = 29
-        end
-      end
-  else days = 31
-  end
-
-    $days_in_month.push(days)
+#def zeller_congruence - find start day of all 12 months
+    h = NumberOfDays.new(month, $year).zeller
+    $start_day.push(h)
 
 end
-
-# Display Days in month for validation
-#    print "\n" "Days in month: "
-#    puts $days_in_month.inspect
-
-#start_day (SUN = 0, MON = 1, TUE = 2, WED = 3, THU = 4, FRI = 5, SAT = 6)
-#def zeller_congruence - find start day of all 12 months
-
-12.times do |mm|
-
-     @month = mm + 1
-     @tyear = $year
-  if @month == 1 || @month ==2
-     @month +=12
-     @tyear = $year - 1
-  end
-
-#Zeller Congruence
-  k = @tyear.modulo(100)
-  ccyy = @tyear.to_s
-  j = (ccyy[0] + ccyy[1]).to_i
-
-  h = (1 + (13 * (@month + 1)/5) + k + (k/4) + (j/4) +(5*j)).modulo(7)
-
-# adjust for day of week value difference from Zeller to Shoup
-
-  if h >= 1 && h <= 6
-    h -= 1
-  else
-  	h = 6
-  end
-
-  $start_day.push(h)
-
- end # end of number of days loop
-
-#Display start day of each month for validation
-#print "Start day of month: "
-#puts $start_day.inspect
 
 end # End of Year Class
 ########################################################

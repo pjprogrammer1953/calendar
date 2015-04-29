@@ -101,7 +101,7 @@ class TestCalIntegration < Minitest::Test
 
 #Valid January 2000
   def test_09_january_2000_six_week_month
-    output = `./cal.rb 01 2000`
+    output = `cal.rb 1 2000`
     expected = <<EOS
 January 2000
 Sun Mon Tue Wed Thu Fri Sat
@@ -117,7 +117,7 @@ EOS
 
 #Valid February 1923
   def test_10_2_february_1923
-    output = `./cal.rb 02 1923`
+    output = `cal.rb 2 1923`
     expected = <<EOS
 February 1923
 Sun Mon Tue Wed Thu Fri Sat
@@ -133,7 +133,7 @@ EOS
 
 #Valid March 1862
   def test_11_march_1862
-    output = `./cal.rb 03 1862`
+    output = `cal.rb 3 1862`
     expected = <<EOS
 March 1862
 Sun Mon Tue Wed Thu Fri Sat
@@ -149,7 +149,7 @@ EOS
 
 #Valid April 1912
   def test_12_april_1912
-    output = `./cal.rb 04 1912`
+    output = `cal.rb 04 1912`
     expected = <<EOS
 April 1912
 Sun Mon Tue Wed Thu Fri Sat
@@ -164,7 +164,7 @@ EOS
 
 #Valid May 1945
   def test_13_may_1945
-    output = `./cal.rb 05 1945`
+    output = `cal.rb 05 1945`
     expected = <<EOS
 May 1945
 Sun Mon Tue Wed Thu Fri Sat
@@ -179,7 +179,7 @@ EOS
 
 #Valid June 1976
   def test_14_june_1976
-    output = `./cal.rb 06 1976`
+    output = `cal.rb 06 1976`
     expected = <<EOS
 June 1976
 Sun Mon Tue Wed Thu Fri Sat
@@ -194,7 +194,7 @@ EOS
 
 #Valid July 1971
   def test_15_july_1971
-    output = `./cal.rb 07 1971`
+    output = `cal.rb 07 1971`
     expected = <<EOS
 July 1971
 Sun Mon Tue Wed Thu Fri Sat
@@ -209,7 +209,7 @@ EOS
 
 #Valid August 1876
   def test_16_august_1876
-    output = `./cal.rb 08 1876`
+    output = `cal.rb 8 1876`
     expected = <<EOS
 August 1876
 Sun Mon Tue Wed Thu Fri Sat
@@ -224,7 +224,7 @@ EOS
 
 #Valid September 1939
   def test_17_september_1939
-    output = `./cal.rb 09 1939`
+    output = `cal.rb 9 1939`
     expected = <<EOS
 September 1939
 Sun Mon Tue Wed Thu Fri Sat
@@ -239,7 +239,7 @@ EOS
 
 #Valid October 1805
   def test_18_october_1805
-    output = `./cal.rb 10 1805`
+    output = `cal.rb 10 1805`
     expected = <<EOS
 October 1805
 Sun Mon Tue Wed Thu Fri Sat
@@ -254,7 +254,7 @@ EOS
 
 #Valid November 1918
   def test_19_november_1918
-    output = `./cal.rb 11 1918`
+    output = `cal.rb 11 1918`
     expected = <<EOS
 November 1918
 Sun Mon Tue Wed Thu Fri Sat
@@ -269,7 +269,7 @@ EOS
 
 #Valid December 1996 Sunday first day of month
   def test_20_december_1996_sunday_first_day
-    output = `./cal.rb 12 1996`
+    output = `cal.rb 12 1996`
     expected = <<EOS
 December 1996
 Sun Mon Tue Wed Thu Fri Sat
@@ -284,7 +284,7 @@ EOS
 
 #Valid February 2240 Leap Year
   def test_21_february_2240_std_feb_leap_year
-    output = `./cal.rb 02 2240`
+    output = `cal.rb 2 2240`
     expected = <<EOS
 February 2440
 Sun Mon Tue Wed Thu Fri Sat
@@ -296,11 +296,5 @@ Sun Mon Tue Wed Thu Fri Sat
 EOS
     assert_equal expected, output
   end
-
-#Valid Full Standard Year
-
-#Valid Full Year 1900 Centenary Non Leap Year
-
-#Valid Full Year 2000 Centenary Leap Year
 
 end
