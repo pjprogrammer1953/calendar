@@ -8,20 +8,20 @@ def initialize(month, year)
   @year = year.to_i
 
   @month_full_alpha = [
-  "January  ",
-  "February ",
-  "March    ",
-  "April    ",
-  "May      ",
-  "June     ",
-  "July     ",
-  "August   ",
-  "September",
-  "October  ",
-  "November ",
-  "December "]
+  "     January",
+  "     February",
+  "      March",
+  "      April",
+  "       May",
+  "      June",
+  "      July",
+  "     August",
+  "    September",
+  "    October",
+  "    November",
+  "    December"]
 
-  @dow_header = "Su Mo Tu We Th Fr Sa \n"
+  @dow_header = "Su Mo Tu We Th Fr Sa  \n"
 
   @month_head = "#{@month_full_alpha[@month-1]} #{@year} \n"
 
@@ -35,7 +35,7 @@ def initialize(month, year)
   @f = NumberOfDays.new(@month, @year).zeller
 
 end
-
+###################################
 def to_s
 
 # Counter for this day of the month
@@ -85,5 +85,5 @@ def to_s
     end
   return @xx
   end
-end
+end # End of Class CalMonth
 #######################################################

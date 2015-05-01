@@ -10,7 +10,6 @@ class CalYear
   end
 
   def preload
-  print @year, "\n"
 
 # Fill $start_day array with 12 start days
 
