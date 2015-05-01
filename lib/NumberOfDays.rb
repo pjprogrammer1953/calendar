@@ -1,9 +1,12 @@
 class NumberOfDays
 
+  attr_reader :year, :month
+
   def initialize(month, year)
       @month = month.to_i
       @year = year.to_i
       @days = 0
+      @h = 0
   end
 
   def days
@@ -27,14 +30,14 @@ class NumberOfDays
 #Zeller Congruence
   def zeller
 
-    tyear = @year
+    @tyear = @year
     if @month == 1 || @month ==2
        @month +=12
-       tyear = @year - 1
+       @tyear = @year - 1
     end
 
-    k = tyear.modulo(100)
-    ccyy = tyear.to_s
+    k = @tyear.modulo(100)
+    ccyy = @tyear.to_s
     j = (ccyy[0] + ccyy[1]).to_i
 
     @h = (1 + (13 * (@month + 1)/5) + k + (k/4) + (j/4) +(5*j)).modulo(7)
