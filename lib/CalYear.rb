@@ -34,13 +34,33 @@ class CalYear
 ########################################################
 
   def to_s
-
+      @array_weeks = Array.new
     12.times do |mm|
-      month = mm +1
+      month = mm + 1
       @mmonth = CalMonth.new(month, @year)
       @yyear << @mmonth.to_s
+      @array_weeks.push(@mmonth.to_s)
     end
-    @yyear
+
+    4.times do |mm|
+      m0 = 3 * mm
+      m1 = 3 * mm + 1
+      m2 = 3 * mm + 2
+
+      string00 = @array_weeks[m0].sub("\n", "")
+      string01 = @array_weeks[m1].sub("\n", "")
+      string02 = @array_weeks[m2].sub("\n", "")
+
+      8.times do |i|
+        @line = string00.slice(i * 20, 20) + "  " +
+                string01.slice(i * 20, 20) + "  " +
+                string02.slice(i * 20, 20) + "\n"
+        @yyear << @line.to_s
+      end
+    end
+   @yyear
+
   end
+########################################################
 
 end # End of Year Class

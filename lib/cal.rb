@@ -29,7 +29,7 @@ elsif ARGV.length == 1
           Format: `ruby cal.rb CCYY`"
   else
     yyear = CalYear.new(@year)
-    puts "#{@year} \n".center(20)
+    puts "#{@year} \n".center(60)
     puts yyear.to_s
   end
 

@@ -8,22 +8,22 @@ def initialize(month, year)
   @year = year.to_i
 
   @month_full_alpha = [
-  "     January",
+  "     January ",
   "     February",
-  "      March",
-  "      April",
-  "       May",
-  "      June",
-  "      July",
-  "     August",
+  "      March  ",
+  "      April  ",
+  "       May   ",
+  "      June   ",
+  "      July   ",
+  "     August  ",
   "    September",
-  "    October",
-  "    November",
-  "    December"]
+  "    October  ",
+  "    November ",
+  "    December "]
 
-  @dow_header = "Su Mo Tu We Th Fr Sa  \n"
+  @dow_header = "Su Mo Tu We Th Fr Sa \n"
 
-  @month_head = "#{@month_full_alpha[@month-1]} #{@year} \n"
+  @month_head = "#{@month_full_alpha[@month-1]} #{@year}  \n"
 
 # Number of days in this month
   @d = NumberOfDays.new(@month, @year).days
@@ -58,30 +58,35 @@ def to_s
     @xx << @month_head << @dow_header
 
     6.times do
-      while y <= @d
+      7.times do
+      if y <= @d
+   #  while y <= @d
         if y < 10
         	filler = y.to_s + "  "
         else
           filler = y.to_s + " "
         end
-
+      else
+        filler = "    "
+      end
         line += filler
 
         y += 1
         @f += 1
         if @f >= 7
-          break
-        end
-      end
+   #       break
+   #     end
+   #   end
 # reset the day of the week
       @f = 0
 # print calendar week line
-
       @xx << line << "\n"
       line = ''
-      if y > @d
-      	break
-      end
+    end
+    #  if y > @d
+    #  	break
+    #  end
+  end
     end
   return @xx
   end
