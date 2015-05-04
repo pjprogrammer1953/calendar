@@ -6,7 +6,7 @@ class CalYear
 
   def initialize(year)
     @year = year.to_i
-    @yyear = ''
+    @yyear = ""
   end
 
   def preload
@@ -34,32 +34,66 @@ class CalYear
 ########################################################
 
   def to_s
+      @yyear.clear
       @array_weeks = Array.new
     12.times do |mm|
       month = mm + 1
       @mmonth = CalMonth.new(month, @year)
-      @yyear << @mmonth.to_s
+#      @yyear << @mmonth.to_s
       @array_weeks.push(@mmonth.to_s)
     end
 
     4.times do |mm|
-      m0 = 3 * mm
-      m1 = 3 * mm + 1
-      m2 = 3 * mm + 2
+      m0 = (3 * mm)
+      m1 = (3 * mm) + 1
+      m2 = (3 * mm) + 2
 
-      string00 = @array_weeks[m0].sub("\n", "")
-      string01 = @array_weeks[m1].sub("\n", "")
-      string02 = @array_weeks[m2].sub("\n", "")
+# remove carriage return for first two months
+# retain it for the third month
+      @array_weeks[m0].gsub!("\n", " ")
+ #     @year << @array_weeks[m0] << "\n"
+      @array_weeks[m1].gsub!("\n", " ")
+ #     @year << @array_weeks[m1] << "\n"
+      @array_weeks[m2].gsub!("\n", " ")
+ #     @year << @array_weeks[m2] << "\n"
+
+ #     @line0 = "x0 = " + x0.length.to_s + "\n"
+ #       @yyear << @line0.to_s
+ #     @line1 = "x1 = " + x1.length.to_s + "\n"
+ #       @yyear << @line1.to_s
+ #     @line2 = "x2 = " + x2.length.to_s + "\n"
+ #       @yyear << @line2.to_s
+
+ #     @yyear << "x0= \n" + x0.to_s + "\n"
+ #     @yyear << "x1= \n" + x1.to_s + "\n"
+ #     @yyear << "x2= \n" + x2.to_s + "\n"
+
+#      @line0 = "@array_weeks[m0] = " + @array_weeks[m0].length.to_s + "\n"
+#        @yyear << @line0.to_s
+#      @line1 = "@array_weeks[m1] = " + @array_weeks[m1].length.to_s + "\n"
+#        @yyear << @line1.to_s
+#      @line2 = "@array_weeks[m2] = " + @array_weeks[m1].length.to_s + "\n"
+#        @yyear << @line2.to_s
 
       8.times do |i|
-        @line = string00.slice(i * 20, 20) + "  " +
-                string01.slice(i * 20, 20) + "  " +
-                string02.slice(i * 20, 20) + "\n"
-        @yyear << @line.to_s
-      end
-    end
-   @yyear
+        j = i * 22
+        string00 = @array_weeks[m0].byteslice(j,22)
+        string01 = @array_weeks[m1].byteslice(j,22)
+        string02 = @array_weeks[m2].byteslice(j,22)
 
+        @linex = string00.to_s + " " +  string01.to_s + " " + string02.to_s + "\n"
+ #       @line0 = string00.to_s
+ #       @yyear << @line0.to_s
+
+ #       @line1 = string01.to_s
+ #       @yyear << @line1.to_s
+
+#        @line2 = string02.to_s
+        @yyear << @linex
+      end
+
+    end
+   @yyear  # return string to main program for printing
   end
 ########################################################
 
